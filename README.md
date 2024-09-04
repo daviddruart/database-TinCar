@@ -1,7 +1,7 @@
 # database-TinCar
 Construcción de una función <p>
 Voy a desarrollar una función que calculará el costo del estacionamiento basado en el tiempo de uso. La función tomará la hora de entrada y salida del vehículo, calculará el tiempo total de estacionamiento y luego multiplicará este tiempo por una tarifa horaria.
-# Codoigo de la funcion en MySQL
+# Codigo de la funcion en MySQL
     DELIMITER //
     
     CREATE FUNCTION calcular_costo_estacionamiento(
@@ -25,3 +25,25 @@ Voy a desarrollar una función que calculará el costo del estacionamiento basad
     END //
     
     DELIMITER ;
+# Explicación de la Función
+Parámetros de Entrada:
+
+    hora_entrada: 
+La fecha y hora en que el vehículo ingresó al parqueadero.
+
+    hora_salida: 
+La fecha y hora en que el vehículo salió del parqueadero.
+
+    tarifa_hora: 
+La tarifa que se cobra por cada hora de estacionamiento.
+
+# Proceso:
+
+La función primero calcula el tiempo_total que el vehículo estuvo estacionado en horas, utilizando la función TIMESTAMPDIFF, que calcula la diferencia entre dos fechas en minutos y luego se divide entre 60 para convertirlo a horas.
+Luego, multiplica el tiempo_total por la tarifa_hora para obtener el costo_total.
+
+# Uso de la Función
+Con esta función calcula el costo del estacionamiento de un vehículo específico:
+
+    SELECT calcular_costo_estacionamiento('2024-09-03 08:00:00', '2024-09-03 10:30:00', 2.50) AS costo;
+Esto calculará el costo para un vehículo que estuvo estacionado desde las 08:00 hasta las 10:30, con una tarifa de $2.50 por hora.
